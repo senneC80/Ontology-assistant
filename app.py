@@ -1,8 +1,11 @@
+import json
+import time
+
 import streamlit as st
 from openai import OpenAI
 
 from validator import validate, build_repair_prompt, Finding
-from backend.envelope import extract_envelope
+from backend.envelope import extract_envelope, find_envelope
 
 st.set_page_config(page_title="Ontology Assistant", layout="wide")
 
@@ -92,14 +95,70 @@ def _set_report(report) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Envelope element counting
+# ---------------------------------------------------------------------------
+
+def _count_elements(envelope: dict) -> tuple[int, int, int]:
+    """Return (n_classes, n_relations, n_generalizations) from a flat contents list."""
+    contents = envelope.get("model", {}).get("contents", [])
+    classes = sum(1 for e in contents if e.get("type") == "Class")
+    relations = sum(1 for e in contents if e.get("type") == "Relation")
+    generalizations = sum(1 for e in contents if e.get("type") == "Generalization")
+    return classes, relations, generalizations
+
+
+# ---------------------------------------------------------------------------
+# Message rendering
+# ---------------------------------------------------------------------------
+
+def _render_assistant_message(text: str, ts: str, idx: int) -> None:
+    """Render an assistant message, replacing any JSON envelope with download UI.
+
+    The original text in session_state is never modified — this is render-only.
+    """
+    result = find_envelope(text)
+    if result is None:
+        st.markdown(text)
+        return
+
+    envelope, start, end = result
+
+    prose_before = text[:start].strip()
+    prose_after = text[end:].strip()
+
+    if prose_before:
+        st.markdown(prose_before)
+
+    n_classes, n_relations, n_gens = _count_elements(envelope)
+    json_str = json.dumps(envelope, indent=2)
+    filename = f"proposal_{ts if ts else idx}.json"
+
+    st.download_button(
+        label="Download JSON",
+        data=json_str,
+        file_name=filename,
+        mime="application/json",
+        key=f"dl_{idx}",
+    )
+    st.caption(f"{n_classes} classes, {n_relations} relations, {n_gens} generalizations")
+
+    with st.expander("View JSON"):
+        st.code(json_str, language="json")
+
+    if prose_after:
+        st.markdown(prose_after)
+
+
+# ---------------------------------------------------------------------------
 # Assistant streaming
 # ---------------------------------------------------------------------------
 
 def _stream_reply(messages: list[dict]):
     """Generator that yields text deltas from the Responses API stream."""
+    api_input = [{"role": m["role"], "content": m["content"]} for m in messages]
     with get_client().responses.stream(
         model=MODEL,
-        input=messages,
+        input=api_input,
         instructions=load_system_prompt(),
         tools=[{"type": "file_search", "vector_store_ids": [VECTOR_STORE_ID]}],
     ) as stream:
@@ -133,26 +192,39 @@ col_chat, col_panel = st.columns([2, 1])
 with col_chat:
     st.title("Ontology Assistant")
 
-    for msg in st.session_state.messages:
-        with st.chat_message(msg["role"]):
-            st.markdown(msg["content"])
+    # Scrollable history container — chat_input stays outside, docking to bottom
+    with st.container(height=600):
+        for i, msg in enumerate(st.session_state.messages):
+            with st.chat_message(msg["role"]):
+                if msg["role"] == "assistant":
+                    _render_assistant_message(msg["content"], msg.get("ts", ""), i)
+                else:
+                    st.markdown(msg["content"])
 
     # Repair takes precedence over chat input if both fire in the same rerun.
-    # (repair_pending is set by the side-panel button, which triggers st.rerun()
+    # (repair_pending is set by the side-panel button, which calls st.rerun()
     # before the chat input can be processed.)
     if st.session_state.repair_pending:
         st.session_state.repair_pending = False
         reply = _run_assistant(st.session_state.messages)
-        st.session_state.messages.append({"role": "assistant", "content": reply})
+        st.session_state.messages.append(
+            {"role": "assistant", "content": reply, "ts": time.strftime("%H%M%S")}
+        )
         _process_reply(reply)
+        st.rerun()
 
     elif user_input := st.chat_input("Message…"):
-        st.session_state.messages.append({"role": "user", "content": user_input})
+        st.session_state.messages.append(
+            {"role": "user", "content": user_input, "ts": time.strftime("%H%M%S")}
+        )
         with st.chat_message("user"):
             st.markdown(user_input)
         reply = _run_assistant(st.session_state.messages)
-        st.session_state.messages.append({"role": "assistant", "content": reply})
+        st.session_state.messages.append(
+            {"role": "assistant", "content": reply, "ts": time.strftime("%H%M%S")}
+        )
         _process_reply(reply)
+        st.rerun()
 
 # ---- Validation panel ------------------------------------------------------
 
@@ -211,6 +283,21 @@ with col_panel:
                 if st.session_state.get(f"chk_{i}", True)
             ]
             prompt = build_repair_prompt(selected, additional.strip())
-            st.session_state.messages.append({"role": "user", "content": prompt})
+            st.session_state.messages.append(
+                {"role": "user", "content": prompt, "ts": time.strftime("%H%M%S")}
+            )
             st.session_state.repair_pending = True
             st.rerun()
+
+    # Clear conversation — always shown at the bottom of the panel
+    st.divider()
+    if st.button("Clear conversation", type="secondary"):
+        st.session_state.messages = []
+        st.session_state.last_proposal = None
+        st.session_state.last_report = None
+        for key in list(st.session_state.keys()):
+            if key.startswith("chk_") or key.startswith("dl_"):
+                del st.session_state[key]
+        st.session_state.chk_count = 0
+        st.session_state["additional_instructions"] = ""
+        st.rerun()
