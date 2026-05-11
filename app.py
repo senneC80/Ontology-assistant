@@ -67,7 +67,10 @@ def _init_state() -> None:
         "messages": [],
         "last_proposal": None,
         "last_report": None,
-        "repair_pending": False,
+        # stream_pending: set to True whenever a user message has just been
+        # appended and the assistant reply hasn't been fetched yet. Checked
+        # inside the scrollable container so streaming renders there.
+        "stream_pending": False,
         "chk_count": 0,
     }
     for key, value in defaults.items():
@@ -192,8 +195,8 @@ col_chat, col_panel = st.columns([2, 1])
 with col_chat:
     st.title("Ontology Assistant")
 
-    # Scrollable history container — chat_input stays outside, docking to bottom
     with st.container(height=600):
+        # Render conversation history inside the scrollable container.
         for i, msg in enumerate(st.session_state.messages):
             with st.chat_message(msg["role"]):
                 if msg["role"] == "assistant":
@@ -201,29 +204,27 @@ with col_chat:
                 else:
                     st.markdown(msg["content"])
 
-    # Repair takes precedence over chat input if both fire in the same rerun.
-    # (repair_pending is set by the side-panel button, which calls st.rerun()
-    # before the chat input can be processed.)
-    if st.session_state.repair_pending:
-        st.session_state.repair_pending = False
-        reply = _run_assistant(st.session_state.messages)
-        st.session_state.messages.append(
-            {"role": "assistant", "content": reply, "ts": time.strftime("%H%M%S")}
-        )
-        _process_reply(reply)
-        st.rerun()
+        # Stream the next assistant turn inside the container.
+        # stream_pending is set (with st.rerun()) by both the chat input handler
+        # below and the repair button in the side panel, so the user message is
+        # always in history and visible before streaming begins.
+        if st.session_state.stream_pending:
+            st.session_state.stream_pending = False
+            reply = _run_assistant(st.session_state.messages)
+            st.session_state.messages.append(
+                {"role": "assistant", "content": reply, "ts": time.strftime("%H%M%S")}
+            )
+            _process_reply(reply)
+            st.rerun()
 
-    elif user_input := st.chat_input("Message…"):
+    # Chat input docks to the bottom of col_chat. On submit it appends the user
+    # message and sets stream_pending, then reruns so the message appears in the
+    # scrollable container before streaming starts.
+    if user_input := st.chat_input("Message…"):
         st.session_state.messages.append(
             {"role": "user", "content": user_input, "ts": time.strftime("%H%M%S")}
         )
-        with st.chat_message("user"):
-            st.markdown(user_input)
-        reply = _run_assistant(st.session_state.messages)
-        st.session_state.messages.append(
-            {"role": "assistant", "content": reply, "ts": time.strftime("%H%M%S")}
-        )
-        _process_reply(reply)
+        st.session_state.stream_pending = True
         st.rerun()
 
 # ---- Validation panel ------------------------------------------------------
@@ -286,7 +287,7 @@ with col_panel:
             st.session_state.messages.append(
                 {"role": "user", "content": prompt, "ts": time.strftime("%H%M%S")}
             )
-            st.session_state.repair_pending = True
+            st.session_state.stream_pending = True
             st.rerun()
 
     # Clear conversation — always shown at the bottom of the panel
@@ -295,6 +296,7 @@ with col_panel:
         st.session_state.messages = []
         st.session_state.last_proposal = None
         st.session_state.last_report = None
+        st.session_state.stream_pending = False
         for key in list(st.session_state.keys()):
             if key.startswith("chk_") or key.startswith("dl_"):
                 del st.session_state[key]
