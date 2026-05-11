@@ -1,0 +1,2238 @@
+{
+  "id": "project_commutrip_revised",
+  "name": "CommuTrip Revised",
+  "type": "Project",
+  "model": {
+    "id": "pkg_commutrip_revised",
+    "name": "CommuTrip Revised",
+    "type": "Package",
+    "contents": [
+      {
+        "id": "cls_person",
+        "name": "Person",
+        "type": "Class",
+        "stereotype": "role",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_person_firstname",
+            "type": "Property",
+            "name": "firstName"
+          },
+          {
+            "id": "prop_person_lastname",
+            "type": "Property",
+            "name": "lastName"
+          },
+          {
+            "id": "prop_person_email",
+            "type": "Property",
+            "name": "email"
+          }
+        ],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_registered_user",
+        "name": "Registered User",
+        "type": "Class",
+        "stereotype": "role",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_traveller",
+        "name": "Traveller",
+        "type": "Class",
+        "stereotype": "role",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_local_provider",
+        "name": "Local Provider",
+        "type": "Class",
+        "stereotype": "role",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_community_manager",
+        "name": "Community Manager",
+        "type": "Class",
+        "stereotype": "role",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_community",
+        "name": "Community",
+        "type": "Class",
+        "stereotype": "collective",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_community_name",
+            "type": "Property",
+            "name": "name"
+          },
+          {
+            "id": "prop_community_description",
+            "type": "Property",
+            "name": "description"
+          },
+          {
+            "id": "prop_community_avgreviewscore",
+            "type": "Property",
+            "name": "avgReviewScore"
+          },
+          {
+            "id": "prop_community_revenuegenerated",
+            "type": "Property",
+            "name": "revenueGenerated"
+          }
+        ],
+        "restrictedTo": [
+          "collective"
+        ]
+      },
+      {
+        "id": "cls_interest_tag",
+        "name": "Interest Tag",
+        "type": "Class",
+        "stereotype": "type",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_interest_tag_label",
+            "type": "Property",
+            "name": "label"
+          }
+        ]
+      },
+      {
+        "id": "cls_trip",
+        "name": "Trip",
+        "type": "Class",
+        "stereotype": "kind",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_trip_title",
+            "type": "Property",
+            "name": "title"
+          },
+          {
+            "id": "prop_trip_startdate",
+            "type": "Property",
+            "name": "startDate"
+          },
+          {
+            "id": "prop_trip_enddate",
+            "type": "Property",
+            "name": "endDate"
+          }
+        ],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_trip_stop",
+        "name": "Trip Stop",
+        "type": "Class",
+        "stereotype": "kind",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_trip_stop_locationname",
+            "type": "Property",
+            "name": "locationName"
+          },
+          {
+            "id": "prop_trip_stop_googleplaceid",
+            "type": "Property",
+            "name": "googlePlaceId"
+          },
+          {
+            "id": "prop_trip_stop_arrivaldate",
+            "type": "Property",
+            "name": "arrivalDate"
+          },
+          {
+            "id": "prop_trip_stop_departuredate",
+            "type": "Property",
+            "name": "departureDate"
+          }
+        ],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_activity_listing",
+        "name": "Activity Listing",
+        "type": "Class",
+        "stereotype": "kind",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_activity_listing_title",
+            "type": "Property",
+            "name": "title"
+          },
+          {
+            "id": "prop_activity_listing_description",
+            "type": "Property",
+            "name": "description"
+          },
+          {
+            "id": "prop_activity_listing_locationname",
+            "type": "Property",
+            "name": "locationName"
+          },
+          {
+            "id": "prop_activity_listing_priceperperson",
+            "type": "Property",
+            "name": "pricePerPerson"
+          },
+          {
+            "id": "prop_activity_listing_capacity",
+            "type": "Property",
+            "name": "capacity"
+          },
+          {
+            "id": "prop_activity_listing_starthour",
+            "type": "Property",
+            "name": "startHour"
+          },
+          {
+            "id": "prop_activity_listing_duration",
+            "type": "Property",
+            "name": "duration"
+          },
+          {
+            "id": "prop_activity_listing_schedulepattern",
+            "type": "Property",
+            "name": "schedulePattern"
+          },
+          {
+            "id": "prop_activity_listing_recurrencetype",
+            "type": "Property",
+            "name": "recurrenceType"
+          }
+        ],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_time_slot",
+        "name": "Time Slot",
+        "type": "Class",
+        "stereotype": "kind",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_available_time_slot",
+        "name": "Available Time Slot",
+        "type": "Class",
+        "stereotype": "phase",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_booked_time_slot",
+        "name": "Booked Time Slot",
+        "type": "Class",
+        "stereotype": "phase",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_recommendation",
+        "name": "Recommendation",
+        "type": "Class",
+        "stereotype": "relator",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_recommendation_generatedat",
+            "type": "Property",
+            "name": "generatedAt"
+          },
+          {
+            "id": "prop_recommendation_matchscore",
+            "type": "Property",
+            "name": "matchScore"
+          }
+        ],
+        "restrictedTo": [
+          "relator"
+        ]
+      },
+      {
+        "id": "cls_booking",
+        "name": "Booking",
+        "type": "Class",
+        "stereotype": "relator",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_booking_bookingdate",
+            "type": "Property",
+            "name": "bookingDate"
+          },
+          {
+            "id": "prop_booking_personsbooked",
+            "type": "Property",
+            "name": "personsBooked"
+          },
+          {
+            "id": "prop_booking_totalprice",
+            "type": "Property",
+            "name": "totalPrice"
+          },
+          {
+            "id": "prop_booking_paymentstatus",
+            "type": "Property",
+            "name": "paymentStatus"
+          },
+          {
+            "id": "prop_booking_bookingstatus",
+            "type": "Property",
+            "name": "bookingStatus"
+          },
+          {
+            "id": "prop_booking_platformcommissionpct",
+            "type": "Property",
+            "name": "platformCommissionPct"
+          }
+        ],
+        "restrictedTo": [
+          "relator"
+        ]
+      },
+      {
+        "id": "cls_review",
+        "name": "Review",
+        "type": "Class",
+        "stereotype": "relator",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_review_score",
+            "type": "Property",
+            "name": "score"
+          },
+          {
+            "id": "prop_review_comment",
+            "type": "Property",
+            "name": "comment"
+          },
+          {
+            "id": "prop_review_reviewdate",
+            "type": "Property",
+            "name": "reviewDate"
+          }
+        ],
+        "restrictedTo": [
+          "relator"
+        ]
+      },
+      {
+        "id": "cls_community_membership",
+        "name": "Community Membership",
+        "type": "Class",
+        "stereotype": "relator",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_community_membership_requestedat",
+            "type": "Property",
+            "name": "requestedAt"
+          },
+          {
+            "id": "prop_community_membership_acceptedat",
+            "type": "Property",
+            "name": "acceptedAt"
+          },
+          {
+            "id": "prop_community_membership_status",
+            "type": "Property",
+            "name": "status"
+          }
+        ],
+        "restrictedTo": [
+          "relator"
+        ]
+      },
+      {
+        "id": "cls_community_management_assignment",
+        "name": "Community Management Assignment",
+        "type": "Class",
+        "stereotype": "relator",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_community_management_assignment_assignedat",
+            "type": "Property",
+            "name": "assignedAt"
+          }
+        ],
+        "restrictedTo": [
+          "relator"
+        ]
+      },
+      {
+        "id": "cls_message",
+        "name": "Message",
+        "type": "Class",
+        "stereotype": "kind",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_message_sentat",
+            "type": "Property",
+            "name": "sentAt"
+          },
+          {
+            "id": "prop_message_body",
+            "type": "Property",
+            "name": "body"
+          }
+        ],
+        "restrictedTo": [
+          "functional-complex"
+        ]
+      },
+      {
+        "id": "cls_register",
+        "name": "Register",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_register_setemail",
+            "type": "Property",
+            "name": "setEmail"
+          },
+          {
+            "id": "prop_register_setpassword",
+            "type": "Property",
+            "name": "setPassword"
+          },
+          {
+            "id": "prop_register_setfirstname",
+            "type": "Property",
+            "name": "setFirstName"
+          },
+          {
+            "id": "prop_register_setlastname",
+            "type": "Property",
+            "name": "setLastName"
+          }
+        ],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_login",
+        "name": "Login",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "prop_login_checkemail",
+            "type": "Property",
+            "name": "checkEmail"
+          },
+          {
+            "id": "prop_login_checkpassword",
+            "type": "Property",
+            "name": "checkPassword"
+          }
+        ],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_create_trip",
+        "name": "Create Trip",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_add_activity_listing",
+        "name": "Add Activity Listing",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_create_community",
+        "name": "Create Community",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_generate_recommendations",
+        "name": "Generate Recommendations",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_create_booking",
+        "name": "Create Booking",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_external_payment",
+        "name": "External Payment",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_request_community_membership",
+        "name": "Request Community Membership",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_accept_community_membership",
+        "name": "Accept Community Membership",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "cls_send_message",
+        "name": "Send Message",
+        "type": "Class",
+        "stereotype": "event",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [],
+        "restrictedTo": [
+          "event"
+        ]
+      },
+      {
+        "id": "gen_registered_user_person",
+        "type": "Generalization",
+        "general": {
+          "id": "cls_person",
+          "type": "Class"
+        },
+        "specific": {
+          "id": "cls_registered_user",
+          "type": "Class"
+        }
+      },
+      {
+        "id": "gen_traveller_registered_user",
+        "type": "Generalization",
+        "general": {
+          "id": "cls_registered_user",
+          "type": "Class"
+        },
+        "specific": {
+          "id": "cls_traveller",
+          "type": "Class"
+        }
+      },
+      {
+        "id": "gen_local_provider_registered_user",
+        "type": "Generalization",
+        "general": {
+          "id": "cls_registered_user",
+          "type": "Class"
+        },
+        "specific": {
+          "id": "cls_local_provider",
+          "type": "Class"
+        }
+      },
+      {
+        "id": "gen_community_manager_local_provider",
+        "type": "Generalization",
+        "general": {
+          "id": "cls_local_provider",
+          "type": "Class"
+        },
+        "specific": {
+          "id": "cls_community_manager",
+          "type": "Class"
+        }
+      },
+      {
+        "id": "gen_available_time_slot_time_slot",
+        "type": "Generalization",
+        "general": {
+          "id": "cls_time_slot",
+          "type": "Class"
+        },
+        "specific": {
+          "id": "cls_available_time_slot",
+          "type": "Class"
+        }
+      },
+      {
+        "id": "gen_booked_time_slot_time_slot",
+        "type": "Generalization",
+        "general": {
+          "id": "cls_time_slot",
+          "type": "Class"
+        },
+        "specific": {
+          "id": "cls_booked_time_slot",
+          "type": "Class"
+        }
+      },
+      {
+        "id": "rel_register_creates_registered_user",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_register_creates_registered_user_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_register",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_register_creates_registered_user_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_registered_user",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_person_participates_in_register",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_person_participates_in_register_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_person",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_person_participates_in_register_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_register",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_registered_user_participates_in_login",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_registered_user_participates_in_login_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_registered_user",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_registered_user_participates_in_login_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_login",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_create_trip_creates_trip",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_create_trip_creates_trip_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_create_trip",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_create_trip_creates_trip_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_trip",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_traveller_participates_in_create_trip",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_traveller_participates_in_create_trip_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_traveller",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_traveller_participates_in_create_trip_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_create_trip",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_trip_contains_trip_stop",
+        "name": "contains",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_trip_contains_trip_stop_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_trip",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_trip_contains_trip_stop_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1..*",
+            "propertyType": {
+              "id": "cls_trip_stop",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_traveller_owns_trip",
+        "name": "owns",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_traveller_owns_trip_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_traveller",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_traveller_owns_trip_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_trip",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_generate_recommendations_creates_recommendation",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_generate_recommendations_creates_recommendation_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_generate_recommendations",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_generate_recommendations_creates_recommendation_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1..*",
+            "propertyType": {
+              "id": "cls_recommendation",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_trip_stop_mediation_recommendation",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_trip_stop_mediation_recommendation_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_trip_stop",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_trip_stop_mediation_recommendation_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_recommendation",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_activity_listing_mediation_recommendation",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_activity_listing_mediation_recommendation_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_activity_listing_mediation_recommendation_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_recommendation",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_add_activity_listing_creates_activity_listing",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_add_activity_listing_creates_activity_listing_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_add_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_add_activity_listing_creates_activity_listing_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_local_provider_participates_in_add_activity_listing",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_local_provider_participates_in_add_activity_listing_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_local_provider",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_local_provider_participates_in_add_activity_listing_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_add_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_local_provider_offers_activity_listing",
+        "name": "offers",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_local_provider_offers_activity_listing_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_local_provider",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_local_provider_offers_activity_listing_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_activity_listing_has_available_time_slot",
+        "name": "has",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_activity_listing_has_available_time_slot_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_activity_listing_has_available_time_slot_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_available_time_slot",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_available_time_slot_becomes_booked_time_slot",
+        "name": "becomes",
+        "type": "Relation",
+        "stereotype": "historicalDependence",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_available_time_slot_becomes_booked_time_slot_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_available_time_slot",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_available_time_slot_becomes_booked_time_slot_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..1",
+            "propertyType": {
+              "id": "cls_booked_time_slot",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_create_booking_creates_booking",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_create_booking_creates_booking_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_create_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_create_booking_creates_booking_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_traveller_participates_in_create_booking",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_traveller_participates_in_create_booking_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_traveller",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_traveller_participates_in_create_booking_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_create_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_traveller_mediation_booking",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_traveller_mediation_booking_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_traveller",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_traveller_mediation_booking_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_local_provider_mediation_booking",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_local_provider_mediation_booking_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_local_provider",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_local_provider_mediation_booking_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_activity_listing_mediation_booking",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_activity_listing_mediation_booking_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_activity_listing_mediation_booking_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_booking_captures_booked_time_slot",
+        "name": "captures",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_booking_captures_booked_time_slot_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_booking_captures_booked_time_slot_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1..*",
+            "propertyType": {
+              "id": "cls_booked_time_slot",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_external_payment_performed_by_traveller",
+        "name": "performed by",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_external_payment_performed_by_traveller_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_external_payment",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_external_payment_performed_by_traveller_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_traveller",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_external_payment_settles_booking",
+        "name": "settles",
+        "type": "Relation",
+        "stereotype": "historicalDependence",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_external_payment_settles_booking_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_external_payment",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_external_payment_settles_booking_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_traveller_mediation_review",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_traveller_mediation_review_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_traveller",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_traveller_mediation_review_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_review",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_activity_listing_mediation_review",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_activity_listing_mediation_review_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_activity_listing_mediation_review_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_review",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_review_depends_on_booking",
+        "name": "depends on",
+        "type": "Relation",
+        "stereotype": "historicalDependence",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_review_depends_on_booking_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_review",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_review_depends_on_booking_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_booking",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_create_community_creates_community",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_create_community_creates_community_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_create_community",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_create_community_creates_community_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_create_community_creates_community_management_assignment",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_create_community_creates_community_management_assignment_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_create_community",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_create_community_creates_community_management_assignment_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community_management_assignment",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_local_provider_participates_in_create_community",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_local_provider_participates_in_create_community_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_local_provider",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_local_provider_participates_in_create_community_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_create_community",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_community_manager_mediation_community_management_assignment",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_community_manager_mediation_community_management_assignment_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community_manager",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_community_manager_mediation_community_management_assignment_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_community_management_assignment",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_community_mediation_community_management_assignment",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_community_mediation_community_management_assignment_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_community_mediation_community_management_assignment_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_community_management_assignment",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_request_community_membership_creates_community_membership",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_request_community_membership_creates_community_membership_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_request_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_request_community_membership_creates_community_membership_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_local_provider_participates_in_request_community_membership",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_local_provider_participates_in_request_community_membership_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_local_provider",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_local_provider_participates_in_request_community_membership_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_request_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_community_participates_in_request_community_membership",
+        "name": "participates in",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_community_participates_in_request_community_membership_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_community_participates_in_request_community_membership_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_request_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_local_provider_mediation_community_membership",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_local_provider_mediation_community_membership_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_local_provider",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_local_provider_mediation_community_membership_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_community_mediation_community_membership",
+        "name": "",
+        "type": "Relation",
+        "stereotype": "mediation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_community_mediation_community_membership_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_community_mediation_community_membership_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_accept_community_membership_performed_by_community_manager",
+        "name": "performed by",
+        "type": "Relation",
+        "stereotype": "participation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_accept_community_membership_performed_by_community_manager_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_accept_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_accept_community_membership_performed_by_community_manager_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community_manager",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_accept_community_membership_acts_on_community_membership",
+        "name": "acts on",
+        "type": "Relation",
+        "stereotype": "historicalDependence",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_accept_community_membership_acts_on_community_membership_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_accept_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_accept_community_membership_acts_on_community_membership_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_community_membership",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_send_message_creates_message",
+        "name": "creates",
+        "type": "Relation",
+        "stereotype": "creation",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_send_message_creates_message_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_send_message",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_send_message_creates_message_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_message",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_registered_user_sends_message",
+        "name": "sends",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_registered_user_sends_message_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_registered_user",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_registered_user_sends_message_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_message",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_registered_user_receives_message",
+        "name": "receives",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_registered_user_receives_message_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "1",
+            "propertyType": {
+              "id": "cls_registered_user",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_registered_user_receives_message_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_message",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_activity_listing_tagged_with_interest_tag",
+        "name": "tagged with",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_activity_listing_tagged_with_interest_tag_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_activity_listing",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_activity_listing_tagged_with_interest_tag_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_interest_tag",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      },
+      {
+        "id": "rel_traveller_has_interest_interest_tag",
+        "name": "has interest",
+        "type": "Relation",
+        "stereotype": "material",
+        "isAbstract": false,
+        "isDerived": false,
+        "properties": [
+          {
+            "id": "end_rel_traveller_has_interest_interest_tag_source",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_traveller",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          },
+          {
+            "id": "end_rel_traveller_has_interest_interest_tag_target",
+            "type": "Property",
+            "isDerived": false,
+            "isReadOnly": false,
+            "isOrdered": false,
+            "cardinality": "0..*",
+            "propertyType": {
+              "id": "cls_interest_tag",
+              "type": "Class"
+            },
+            "aggregationKind": "NONE"
+          }
+        ]
+      }
+    ]
+  }
+}
