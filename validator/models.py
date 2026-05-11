@@ -13,6 +13,7 @@ class Severity(str, Enum):
 
 # Rule codes
 RULE_STRUCTURAL_SANITY    = "STRUCT_001"  # ERROR; short-circuits downstream
+RULE_MISSING_PROJECT      = "STRUCT_002"  # WARNING; bare Package normalized
 RULE_DISCONNECTED_ISLAND  = "SYMV_001"    # WARNING
 RULE_GENERALIZATION_CYCLE = "SYMV_002"    # ERROR
 RULE_RELATOR_NO_MEDIATION = "SYMV_003"    # ERROR

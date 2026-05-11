@@ -5,6 +5,7 @@ from typing import Union
 
 from .models import (
     Finding, Report, Severity,
+    RULE_MISSING_PROJECT,
     RULE_STRUCTURAL_SANITY,
 )
 from .graph import build_graphs
@@ -34,6 +35,19 @@ def validate(project: Union[dict, str]) -> Report:
             ))
             return report
 
+    bare_package = (
+        isinstance(project, dict)
+        and project.get("type") == "Package"
+        and "contents" in project
+        and "model" not in project
+    )
+    if bare_package:
+        project = {
+            "type": "Project",
+            "id": "auto_project",
+            "model": project,
+        }
+
     if not isinstance(project, dict) or "model" not in project:
         report.add(Finding(
             severity=Severity.ERROR,
@@ -42,6 +56,20 @@ def validate(project: Union[dict, str]) -> Report:
             repair_hint="Return a complete OntoUML Project envelope per ontouml-schema.",
         ))
         return report
+
+    if bare_package:
+        report.add(Finding(
+            severity=Severity.WARNING,
+            code=RULE_MISSING_PROJECT,
+            message=(
+                "Missing Project wrapper, normalized for validation; required "
+                "for Visual Paradigm import"
+            ),
+            repair_hint=(
+                "Wrap the Package in a Project envelope with `type`, `id`, "
+                "and `model` before returning the ontology JSON."
+            ),
+        ))
 
     try:
         gen_graph, rdf_graph = build_graphs(project)

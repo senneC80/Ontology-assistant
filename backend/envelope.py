@@ -5,6 +5,21 @@ import re
 from typing import Optional
 
 
+def _looks_like_ontouml(data) -> bool:
+    if not isinstance(data, dict):
+        return False
+
+    # Project-wrapped (preferred)
+    if "model" in data and isinstance(data.get("model"), dict):
+        return True
+
+    # Bare Package (LLM sometimes omits the Project wrapper)
+    if data.get("type") == "Package" and "contents" in data:
+        return True
+
+    return False
+
+
 def find_envelope(text: str) -> Optional[tuple[dict, int, int]]:
     """Return (envelope_dict, start, end) for the first OntoUML envelope in text.
 
@@ -18,13 +33,13 @@ def find_envelope(text: str) -> Optional[tuple[dict, int, int]]:
     3. Bare top-level JSON (fallback)
 
     All matches in each category are tried before moving to the next.
-    Returns the first candidate that both parses as JSON and has a "model" key.
+    Returns the first candidate that parses as JSON and looks like OntoUML.
     """
     # 1. Fenced ```json blocks (no newline required immediately after "json")
     for m in re.finditer(r"```json\s*(.*?)```", text, re.DOTALL):
         try:
             obj = json.loads(m.group(1).strip())
-            if isinstance(obj, dict) and "model" in obj:
+            if _looks_like_ontouml(obj):
                 return obj, m.start(), m.end()
         except (json.JSONDecodeError, ValueError):
             continue
@@ -33,7 +48,7 @@ def find_envelope(text: str) -> Optional[tuple[dict, int, int]]:
     for m in re.finditer(r"```(?!\w)\s*(.*?)```", text, re.DOTALL):
         try:
             obj = json.loads(m.group(1).strip())
-            if isinstance(obj, dict) and "model" in obj:
+            if _looks_like_ontouml(obj):
                 return obj, m.start(), m.end()
         except (json.JSONDecodeError, ValueError):
             continue
@@ -41,7 +56,7 @@ def find_envelope(text: str) -> Optional[tuple[dict, int, int]]:
     # 3. Bare JSON fallback: attempt to parse the full text
     try:
         obj = json.loads(text.strip())
-        if isinstance(obj, dict) and "model" in obj:
+        if _looks_like_ontouml(obj):
             return obj, 0, len(text)
     except (json.JSONDecodeError, ValueError):
         pass
