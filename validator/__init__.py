@@ -49,7 +49,13 @@ def validate(project: Union[dict, str]) -> Report:
         report.add(Finding(
             severity=Severity.ERROR,
             code=RULE_STRUCTURAL_SANITY,
-            message=f"Could not build graphs: {e}",
+            message=f"Could not build graphs ({type(e).__name__}: {e})",
+            repair_hint=(
+                "This often means a field value doesn't match the OntoUML JSON schema "
+                "(e.g. `restrictedTo` must use OntologicalNature values like "
+                "'functional-complex', 'relator', 'event' — not stereotype names like "
+                "'kind' or 'subkind')."
+            ),
         ))
         return report
 
