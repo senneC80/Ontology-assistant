@@ -8,7 +8,10 @@ KNOWLEDGE_FILES = [
     "knowledge/platform_examples.md",
     "knowledge/ontouml_rules_for_platforms.md",
     "knowledge/ontouml_stereotypes_reference.md",
-    "knowledge/output_formats_and_templates3.md",
+    "knowledge/summary_format.md",
+    "knowledge/ontouml_json_schema.md",
+    "knowledge/plantuml_template.md",
+    "knowledge/taxonomy_format.md",
 ]
 
 
@@ -16,8 +19,12 @@ KB_FILES = [
     "knowledge/dpo_module_patterns.md",
     "knowledge/platform_examples.md",
     "knowledge/ontouml_rules_for_platforms.md",
+    "knowledge/summary_format.md",
+    "knowledge/ontouml_json_schema.md",
+    "knowledge/plantuml_template.md",
+    "knowledge/taxonomy_format.md",
     "knowledge/ontouml_stereotypes_reference.md",
-    "knowledge/output_formats_and_templates3.md",
+    
 ]
 
 

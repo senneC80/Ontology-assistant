@@ -233,6 +233,5 @@ Based on analysis of ~10 real platform ontologies:
 - Large platforms (Airbnb, BlaBlaCar, Uber Eats): 35-50 total classes
 - Very large platforms (CreateYourTrip): 50-70+ total classes
 
-Of these, typically 5-15 are platform-specific NEW classes, and the rest come from DPO modules.
 
 A good initial ontology should target the 25-35 class range unless the platform is exceptionally complex.
