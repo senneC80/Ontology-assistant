@@ -58,13 +58,19 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-Create `.streamlit/secrets.toml`:
+Copy the example secrets file and fill in your values:
+
+```bash
+cp .streamlit/secrets.toml.example .streamlit/secrets.toml
+```
+
+`.streamlit/secrets.toml` (gitignored — never commit this file):
 
 ```toml
-openai_api_key  = "sk-..."
+app_password    = "your-password"
+openai_api_key  = "sk-proj-..."
 vector_store_id = "vs_..."
 model           = "gpt-4o"
-app_password    = "your-password"
 ```
 
 **Populating the vector store:** Upload every file in `knowledge/` to an OpenAI vector store and copy the resulting `vs_...` ID into `secrets.toml`.
